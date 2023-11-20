@@ -15,7 +15,6 @@ export default async function UsedCarOrderPage() {
 
   const data = await GetStaticDatasNotSSRAPI({
     endPoint: "/AdSale/Get/Published/Used",
-    // data: postedData,
     method: "get",
   });
   await ConvertAPIImagesToBase64(data?.ads ?? []);

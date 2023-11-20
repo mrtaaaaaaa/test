@@ -19,7 +19,11 @@ export default async function NewCarOrdersPage() {
   });
   await ConvertAPIImagesToBase64(publishedAds?.ads);
 
-  const newData = await GetCarsListAPi("New");
+  const newData = await GetStaticDatasNotSSRAPI({
+    endPoint: "/AdSale/Get/Published/New",
+    method: "get",
+  });
+
   await ConvertAPIImagesToBase64(newData?.ads);
 
   return (
