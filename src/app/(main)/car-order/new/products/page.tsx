@@ -5,7 +5,10 @@ import GetStaticDatasNotSSRAPI from "@/apis/static-datas/get-static-datas-not-ss
 import NewProductListPage from "@/page/car-order/new/products";
 
 export default async function Product() {
-  const data = await GetCarsListAPi("New");
+  const data = await GetStaticDatasNotSSRAPI({
+    endPoint: "/AdSale/Get/Published/New",
+    method: "get",
+  });
 
   let pagedata = { page_number: 1, page_size: 100 };
 
