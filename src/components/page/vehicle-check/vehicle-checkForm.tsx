@@ -1,10 +1,11 @@
 "use client";
+import NotFound from "@/attom/errors/not-found";
+import { useAppDispatch } from "@/hooks/redux-hooks";
 import CardVehicleCheckPack from "@/organism/vehicle-check/card-vehicle-check-pack";
 import { REMOVE_VEHICLE_CHECKS } from "@/redux/vehicle-check/vehicle-check-slice";
-
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import VehicleCheckFactor from "./vehicle-check-factor";
-import NotFound from "@/attom/errors/not-found";
+import { useParams } from "next/navigation";
 
 interface Proptypes {
   models: {
@@ -16,38 +17,42 @@ interface Proptypes {
 }
 
 const VehicleCheckForm = ({ models, areas = [] }: Proptypes) => {
-  let str;
+  const [notFound, setNotFound] = useState(false);
+  const params = useParams();
 
-  if (typeof window !== "undefined") {
-    str = window.location.pathname;
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    console.log(params.vehicle_check_id);
+
+    if (
+      params.vehicle_check_id === "1" ||
+      params.vehicle_check_id === "3" ||
+      params.vehicle_check_id === "5"
+    ) {
+      dispatch(REMOVE_VEHICLE_CHECKS());
+    } else {
+      setNotFound(true);
+    }
+  }, []);
+
+  if (notFound) {
+    return <NotFound />;
   }
-
-  let numOfComponents = str?.split("/")[2];
-
-  const dispatch = useDispatch();
-  dispatch(REMOVE_VEHICLE_CHECKS());
 
   return (
     <>
       <div className="flex flex-col gap-6 mt-4">
-        {(numOfComponents != undefined && +numOfComponents === 1) ||
-        +numOfComponents === 3 ||
-        +numOfComponents === 5 ? (
-          <>
-            {Array.from(Array(+numOfComponents))?.map((x, index) => (
-              <CardVehicleCheckPack
-                key={index}
-                indexOfBox={index}
-                models={models?.brandModelTypes}
-                areas={areas}
-              />
-            ))}
+        {Array.from(Array(+params?.vehicle_check_id))?.map((x, index) => (
+          <CardVehicleCheckPack
+            key={index}
+            indexOfBox={index}
+            models={models?.brandModelTypes}
+            areas={areas}
+          />
+        ))}
 
-            <VehicleCheckFactor />
-          </>
-        ) : (
-          <NotFound />
-        )}
+        <VehicleCheckFactor />
       </div>
     </>
   );

@@ -1,22 +1,15 @@
+import { icons } from "@/data";
+import { checkExistWindow } from "@/utils/check-exist-window";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { icons } from "@/data";
+import Link from "next/link";
 import { useState } from "react";
-import ReactInputVerificationCode from "react-input-verification-code";
-import { toast } from "react-toastify";
-import Timer from "@/page/auth/components/timer";
-import httpService from "@/services/http-service";
-import { AUTH_URL } from "@/config/url";
 import HorizontalLinearStepper from "../stepper/stepper";
-import { postAuthLoginRequest } from "@/apis/authentication@";
-import OTPCode from "@/page/auth/components/otp-code";
-import RegisterForm from "@/page/auth/register/components/register-form";
-import { checkExistWindow } from "@/utils/check-exist-window";
-import { useAppSelector } from "@/hooks/redux-hooks";
-import { useRouter } from "next/router";
-import { registerSelector } from "@/redux/auth/register/register-slice";
-import Link from "next/link"
+import ReactInputVerificationCode from "react-input-verification-code";
+import Timer from "@/page/auth/components/timer";
+import UserpersonalInfoPass from "./components/userpersonalInfoPass";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -40,26 +33,24 @@ export default function RequestRegistrationModal({
   showStepper,
   open,
   setOpen,
-  phone,
+  handleResendCode,
 
 }) {
 
-  const [verifactionCode, setVerifactionCode] = useState("");
-  const [otp, setOtp] = useState(false)
 
-  // @@@___________________ phone_number ___________________@@@
+  const [timeLeft, setTimeLeft] = useState(120);
+  const [otp, setOtp] = useState("")
+
   const phone_number =
     checkExistWindow() &&
-    JSON.parse(window.localStorage.getItem("phone_number") ?? "");
-
-
-
+    JSON.parse(window.localStorage.getItem("phone_number") ?? "")
 
 
   const handleClose = () => setOpen(false);
 
- 
-
+  const handleCompleteOTP = (value) => {
+    setOtp(value)
+  }
 
   return (
     <div className="rounded-lg">
@@ -77,12 +68,6 @@ export default function RequestRegistrationModal({
                 </Typography>
 
                 <div className="w-full flex flex-col justify-center items-center mb-5">
-                  <div className="border-b-gray border-b pb-2 w-fit px-8">
-                    <h2 className="font-bold text-xl block text-center mt-4">
-                      ثبت درخواست
-                    </h2>
-
-                  </div>
                   <div className="border-b-gray border-b pb-2 w-fit px-8 mx-auto">
                     <h2 className="font-bold text-xl block text-center">ثبت‌نام</h2>
                     <span className="text-gray-400 text-sm mt-4 ltr block text-center">
@@ -91,22 +76,47 @@ export default function RequestRegistrationModal({
                   </div>
 
                   <Link
-                    href="/auth/check"
+                    onClick={handleClose}
+                    href="/exhibitors/landing#enter-phone"
                     className="underline text-blue text-xs text-center mt-2 mx-auto block"
                   >
                     اصلاح شماره همراه
                   </Link>
+                  <span className="block text-center my-6">
+                    کد ارسال شده به
+                    <span className="font-bold pr-1">{phone_number}</span> را وارد نمایید:
+                  </span>
+                  <div className="md:w-2/2 gap-2 md:mx-auto ">
+                    <div className="input-validation">
+                      <ReactInputVerificationCode
+                        value=""
+                        autoFocus={true}
+                        length={5}
+                        placeholder=""
+                        type="text"
+                        onCompleted={handleCompleteOTP}
+                      />
+                    </div>
 
-              
+                    <Timer
+                      onClickHandler={handleResendCode}
+                      timeLeft={timeLeft}
+                      setTimeLeft={setTimeLeft}
+                    />
+                  </div>
+                  <UserpersonalInfoPass otp={otp} setShowStepper={setShowStepper} />
 
                   <span className="mt-5 block text-center text-xs font-light">
-                    ثبت نام شما به معنای پذیرش{" "}
-                    <span className="font-bold text-blue border-b border-blue">
+                    ثبت نام شما به معنای پذیرش
+                    <span className="font-bold text-blue border-b border-blue ">
                       شرایط اُتو
-                    </span>{" "}
+                    </span>
                     است
                   </span>
                 </div>
+              </div>
+              <div className="flex justify-center ">
+
               </div>
             </>
           )}

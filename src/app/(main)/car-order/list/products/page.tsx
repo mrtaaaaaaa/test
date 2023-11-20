@@ -1,4 +1,3 @@
-import { GetPublishedListAPI } from "@/apis/cars-list";
 import GetStaticDatasNotSSRAPI from "@/apis/static-datas/get-static-datas-not-ssr.api";
 import ProductListPage from "@/page/car-order/list/products/page";
 import { ConvertAPIImagesToBase64 } from "@/utils/get-images-base64-api";

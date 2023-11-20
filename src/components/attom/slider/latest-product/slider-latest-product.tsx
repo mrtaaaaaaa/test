@@ -28,14 +28,14 @@ export const SliderLatestProduct = ({ link, data }: SliderType) => {
   return (
     <div className="grid grid-cols-4 gap-4 my-8">
       <div
-        className="bg-white rounded py-8 px-4 flex flex-col justify-between items-center"
+        className="bg-white rounded py-8 px-4 flex flex-col justify-between items-center gap-8"
         style={{
           boxShadow:
             "0px 1px 12px 0px rgba(0, 0, 0, 0.12), 0px 0px 1px 0px rgba(13, 68, 250, 0.16) inset",
         }}
       >
         <h3 className="text-gray-800  text-xl text-center mb-4 ">
-          جدیدترین آگهی های
+          جدیدترین آگهی‌های 
           <br />
           <b>خودروهای {link.includes("used") ? "کار کرده" : "صفر"}</b>
         </h3>

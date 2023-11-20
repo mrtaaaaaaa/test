@@ -1,20 +1,21 @@
 "use client"
+
+
 import Banner from "./components/banner";
-import ExhibitorsList from "./components/exhibitorsList";
-import LatestAds from "./components/latestAds";
 import RegisterExhibitors from "./components/register/registerExhibitors";
 import Steps from "./components/steps";
 
-const Exhibitors = () => {
+
+const ExhibitorLandingPage = () => {
   return (
     <>
       <Banner />
-      <LatestAds />
+      {/* <LatestAds /> */}
       <Steps />
       <RegisterExhibitors />
-      <ExhibitorsList />
+      {/* <ExhibitorsList /> */}
     </>
   );
 };
 
-export default Exhibitors;
+export default ExhibitorLandingPage;

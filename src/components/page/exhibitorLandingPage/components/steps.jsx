@@ -1,3 +1,4 @@
+import {img} from "@/data"
 
 const Steps = () => {
   const steps = [
@@ -45,7 +46,7 @@ const Steps = () => {
             </span>
           </div>
           <div className="tablet:pt-8 tablet:pl-8">
-            {/* <img src={man} alt="همکاری با اُتو" className="max-w-[14rem] mx-auto" /> */}
+            <img src={img.man.src} alt="همکاری با اُتو" className="max-w-[14rem] mx-auto" />
           </div>
         </div>
       </div>

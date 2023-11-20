@@ -42,7 +42,7 @@ const NormalCarOrderRequestsPage = () => {
   } else {
     return (
       <div>
-        <h1 className="font-bold text-lg mb-4">درخواست‌های خرید عادی</h1>
+        <h1 className="font-bold text-xl mb-4 text-blue">درخواست‌های ثبت شده خرید عادی</h1>
         {data.ads == null ? (
           <Alert type="error" title="آگهی ثبت نشده است" />
         ) : (

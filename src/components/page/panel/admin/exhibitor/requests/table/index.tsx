@@ -10,10 +10,12 @@ import { useRequest } from "@/hooks/useRequest";
 import { toast } from "react-toastify";
 
 export default function AdminExhibitorRequestTable() {
+
   const { data, isLoading, isError } = useRequest({
     method: "GET",
     url: `${AUTH_URL}/Auth/Users/Exhibitors`,
   });
+
 
   return (
     <>

@@ -92,11 +92,17 @@ const VehicleCheckFactor = () => {
 
   // Payment Handler
   const submitHandler = () => {
+    console.log("brand.length", brand.length);
+    console.log("year.length", year.length);
+    console.log("vehicleArea.length", vehicleArea.length);
+    console.log("numOfComponents", numOfComponents);
     if (
       brand.length === +numOfComponents &&
       year.length === +numOfComponents &&
       vehicleArea.length === +numOfComponents
     ) {
+      console.log("hi");
+
       let data = new FormData();
 
       data.append("user_name", "09190979722");
@@ -157,18 +163,14 @@ const VehicleCheckFactor = () => {
         </div>
 
         <div>
-          {loading ? (
-            <button className="bg-blue  cursor-not-allowed text-white px-3 py-1 rounded">
-              <CircularProgress />
-            </button>
-          ) : (
-            <button
-              className="bg-blue  text-white disabled:bg-gray-400 disabled:cursor-not-allowed px-3 py-1 rounded"
-              onClick={submitHandler}
-            >
-              پرداخت
-            </button>
-          )}
+          <button
+            className="bg-blue  text-white disabled:bg-gray-400 disabled:cursor-not-allowed px-3 py-1 rounded"
+            onClick={submitHandler}
+            type="button"
+          >
+            پرداخت
+            {loading && <CircularProgress />}
+          </button>
         </div>
       </div>
     </div>

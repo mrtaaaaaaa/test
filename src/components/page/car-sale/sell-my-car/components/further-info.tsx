@@ -113,7 +113,7 @@ const FurtherInfo = ({
             <ExpireDate formik={formik} />
 
             {/* توضیحات و بارگذاری عکس */}
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-8 my-8 border-t border-t-gray-200 pt-8">
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 my-8 border-t border-t-gray-200 pt-8">
               <CustomTextarea
                 formik={formik}
                 label="توضیحات"

@@ -1,5 +1,3 @@
-import { checkExistWindow } from "@/utils/check-exist-window";
-import Link from "next/link";
 const Banner = () => {
   return (
     <div className="flex tablet:flex-row flex-col-reverse -mt-6 ">
@@ -21,10 +19,7 @@ const Banner = () => {
           </a>
         </div>
       </div>
-      <div
-        className="p-8 bg-gradient-to-b from-[
-        #1242E0] to-[#989FC2] tablet:w-1/2"
-      ></div>
+      <div className="p-8 bg-gradient-to-b from-[#1242E0] to-[#989FC2] tablet:w-1/2"></div>
     </div>
   );
 };

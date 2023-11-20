@@ -15,7 +15,7 @@ interface StateData {
 const AdminVehicleCheck = () => {
   const [data, setData] = useState<StateData>({
     data: [],
-    isLoading: false,
+    isLoading: true,
     isError: false,
   });
   const [inspectors, setInspectors] = useState([]);
@@ -33,7 +33,7 @@ const AdminVehicleCheck = () => {
 
   useEffect(() => {
     fetchData();
-    GetAllInspectorsAPI().then((res: any) => setInspectors(res.users));
+    GetAllInspectorsAPI().then((res: any) => setInspectors(res.data.users));
   }, []);
 
   if (data.isLoading) {
@@ -59,7 +59,9 @@ const AdminVehicleCheck = () => {
 
     return (
       <>
-        <h1 className="font-bold text-lg mb-4">درخواست‌های کارشناسی</h1>
+        <h1 className="font-bold text-xl mb-4 text-blue">
+          درخواست‌های کارشناسی
+        </h1>
         {data.data?.length > 1 ? (
           myPackages?.map((pack, index) => (
             <VehicleCheckPack

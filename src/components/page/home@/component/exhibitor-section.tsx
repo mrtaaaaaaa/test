@@ -24,7 +24,7 @@ const ExhibitorSection = () => {
           </p>
         </div>
         <Link
-          href="/exhibitors/register"
+          href="/exhibitors/landing"
           className="bg-blue rounded-xl text-white border-4 border-blue-100 px-8 py-3 font-bold md:-mr-20 m-auto md:text-2xl"
         >
           ثبت‌نام نمایشگاه

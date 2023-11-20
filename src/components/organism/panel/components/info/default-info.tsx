@@ -81,7 +81,7 @@ const DefaultInfo = () => {
         <div
           key={title}
           className={`border px-3 py-4 rounded-lg border-gray-250 ${
-            title == "آدرس" && "md:col-span-2 col-span-1"
+            title == "آدرس" && "md:col-span-3 col-span-1"
           }`}
         >
           <span className="block">{title}</span>

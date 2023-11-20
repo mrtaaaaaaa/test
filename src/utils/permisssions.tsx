@@ -128,12 +128,12 @@ export function getPermissions() {
       href: "/panel/admin/car-pricing",
       permission: ["OperationsDirector"],
     },
-    {
-      value: "ارسال پیامک",
-      icon: <Message size="18" color="#FFF" variant="TwoTone" />,
-      href: "/panel/admin/message",
-      permission: ["OperationsDirector"],
-    },
+    // {
+    //   value: "ارسال پیامک",
+    //   icon: <Message size="18" color="#FFF" variant="TwoTone" />,
+    //   href: "/panel/admin/message",
+    //   permission: ["OperationsDirector"],
+    // },
     {
       value: "درخواست‌های نمایشگاه‌داران",
       icon: <Calendar size="18" color="#FFF" variant="TwoTone" />,

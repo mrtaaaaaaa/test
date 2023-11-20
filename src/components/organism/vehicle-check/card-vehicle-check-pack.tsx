@@ -136,9 +136,9 @@ const CardVehicleCheckPack = ({ indexOfBox, areas, models }: PropTypes) => {
       </span>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="grid lg:grid-cols-12 md:grid-cols-3 gap-8 items-center"
+        className="grid lg:grid-cols-12 md:grid-cols-3 gap-8 items-center mt-3"
       >
-        <div className="mt-3 lg:col-span-3 relative">
+        <div className="lg:col-span-3 relative">
           <DynamicBrandModal
             models={models}
             mainValue={Object.entries(stateOfVehicleCheck.brand_and_model)}
@@ -168,6 +168,7 @@ const CardVehicleCheckPack = ({ indexOfBox, areas, models }: PropTypes) => {
                 : 5
             }
             handleYearChange={handleYearChange}
+            inVehicle={true}
           />
 
           {stateOfVehicleCheck?.error?.year[indexOfBrand] ? (

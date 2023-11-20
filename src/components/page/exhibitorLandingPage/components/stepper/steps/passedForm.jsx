@@ -1,11 +1,11 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 const PassedForm = () => {
   const router=useRouter()
 
     const handleClick = () => {
-        router.push("/exhibitor/requests")
+        router.push("/panel/User/info")
     }
 
     return (

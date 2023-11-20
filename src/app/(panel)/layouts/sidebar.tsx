@@ -52,9 +52,9 @@ export function SidebarPanel() {
         </button>
       </ul>
 
-      <div className="flex items-center gap-1 mt-auto pb-4">
+      <div className="flex gap-2 mt-auto pb-4">
         <div className=" bg-gray-200 rounded-full w-8 h-8"></div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-1">
           <span className="text-white block">
             {userInfo?.first_name?.trim()} {userInfo?.last_name?.trim()}
           </span>

@@ -11,7 +11,7 @@ import {
 } from "@/redux/edit-personal-info/edit-personal-info-slice";
 import httpService from "@/services/http-service";
 import { checkExistWindow } from "@/utils/check-exist-window";
-import { regexNationalCode } from "@/utils/regex";
+import { regexEmail, regexNationalCode } from "@/utils/regex";
 import { Box, LinearProgress, Modal } from "@mui/material";
 import { useFormik } from "formik";
 import moment from "jalali-moment";
@@ -21,6 +21,7 @@ import { toast } from "react-toastify";
 import { useAppSelector } from "src/hooks/redux-hooks";
 import * as Yup from "yup";
 import { InitialType } from "./form-update-info-type";
+import DatePickerInput from "@/attom/form@/components@/date-picker/date-picker-input";
 
 const gender = [
   { value: "مرد", label: "مرد" },
@@ -39,10 +40,7 @@ const FormUpdateInfo = () => {
     last_name: editInfo.data.last_name,
     gender: editInfo.data.gender,
     career: editInfo.data.job,
-    birthday: +editInfo.data.day_of_birth
-      ? `${+editInfo.data.year_of_birth} /${+editInfo.data
-          .month_of_birth}/${+editInfo.data.day_of_birth}`
-      : "-",
+
     day_of_birth: +editInfo.data.day_of_birth,
     month_of_birth: +editInfo.data.month_of_birth,
     year_of_birth: +editInfo.data.day_of_birth,
@@ -65,7 +63,8 @@ const FormUpdateInfo = () => {
       /^[\u0600-\u06FF\s]+$/,
       "صفحه کلید را به فارسی تغییر دهید."
     ),
-    address: Yup.string().max(1230,'تعداد حروف بیش‌تر از حرف مجاز است.')
+    email: Yup.string().matches(regexEmail, "ایمیل صحیح نیست."),
+    address: Yup.string().max(1230, "تعداد حروف بیش‌تر از حرف مجاز است."),
   });
 
   const closeModalHandler = () => dispatch(SET_MODAL_SITUATION(false));
@@ -149,6 +148,7 @@ const FormUpdateInfo = () => {
     onSubmit,
     validationSchema,
   });
+  
 
   return (
     <Modal
@@ -175,7 +175,7 @@ const FormUpdateInfo = () => {
         }}
       >
         <form onSubmit={formik.handleSubmit}>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
             <FormInput
               defaultValue={editInfo.data.first_name}
               formik={formik}
@@ -236,7 +236,17 @@ const FormUpdateInfo = () => {
               classes="text-left ltr"
             />
 
-            {/* <DatePickerInput formik={formik} /> */}
+            <DatePickerInput
+              label="تاریخ تولد"
+              formik={formik}
+              name={"day_of_birth"}
+              nameObject={{
+                day_of_birth: "",
+                month_of_birth: "",
+                year_of_birth: "",
+              }}
+              defaultValue={`${editInfo.data.year_of_birth}/${editInfo.data.month_of_birth}/${editInfo.data.day_of_birth}`}
+            />
 
             <CustomTextarea
               customClass="lg:col-span-3 md:col-span-2"

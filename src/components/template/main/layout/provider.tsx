@@ -15,6 +15,10 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 import { ReactNode } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
+import role_banner from "@/assets/img/role_banner.gif";
+import Link from "next/link";
+import Head from "next/head";
+import Script from "next/script";
 
 interface ProvderType {
   children: ReactNode;
@@ -34,15 +38,19 @@ const PageProvider = ({ children }: ProvderType) => {
   });
   return (
     <html lang="en">
-      <head>
+      <Head>
         <title>OtO | اُتو</title>
-      </head>
+      </Head>
       <body>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Provider store={store}>
               <CacheProvider value={cacheRtl}>
                 <ToastContainer toastClassName="font-medium" rtl={true} />
+                <Link href="/auth/check">
+                  <img src={role_banner.src || ""} alt="role_banner" />
+                </Link>
+
                 <Navbar />
                 <div className="max-w-[1280px] m-auto lg:p-0 p-4 min-h-[calc(100vh_-_550px)]">
                   {children}
@@ -52,6 +60,10 @@ const PageProvider = ({ children }: ProvderType) => {
             </Provider>
           </ThemeProvider>
         </QueryClientProvider>
+        <Script src="yektanet.js"></Script>
+        <Script src="clarity.js"></Script>
+        <Script src="ga.js"></Script>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-MGK9E2EVKX"></Script>
       </body>
     </html>
   );

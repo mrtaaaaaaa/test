@@ -9,13 +9,14 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import RequestRegistrationModal from "./requestRegistrationModal";
-import PersonalInfoForm from "../stepper/steps/personalInfoFrom";
-import HorizontalLinearStepper from "../stepper/stepper";
+import { useRouter } from "next/navigation";
 
 export default function RegisterCard() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showStepper, setShowStepper] = useState(false);
+
+  const router = useRouter()
 
   // Formik initialValue
   let initialValues = {
@@ -53,15 +54,14 @@ export default function RegisterCard() {
           setShowStepper(false)
 
         } else {
-          setOpen(true)
-          setShowStepper(true)
+          router.push("/auth/login-pass")
         }
       })
       .catch((err) => {
         setLoading(false);
 
         toast.error(
-          "به علت تعداد ۱۰ تلاش ناموفق، دسترس به مدت ... مسدود می‌شود."
+          "به علت تعداد ۱۰ تلاش ناموفق، دسترسی به مدت 20 دقیقه مسدود می‌شود."
         )
 
       });
@@ -88,8 +88,6 @@ export default function RegisterCard() {
     enableReinitialize: true,
     validateOnMount: true,
   });
-
-
 
 
   return (
@@ -141,7 +139,7 @@ export default function RegisterCard() {
           setOpen={setOpen}
         />
       )}
-{/* {showStepper && open && <HorizontalLinearStepper />} */}
+      {/* {showStepper && open && <HorizontalLinearStepper />} */}
 
     </>
   );

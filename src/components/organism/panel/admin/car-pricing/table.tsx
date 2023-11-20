@@ -96,7 +96,7 @@ const TablePricing = () => {
         <Loading />
       ) : (
         <>
-          <h1 className="font-bold">قیمت‌گذاری خودروها</h1>
+          <h1 className="font-bold text-xl mb-4 text-blue">قیمت‌گذاری خودروها</h1>
           <TextField
             fullWidth
             value={inputText}

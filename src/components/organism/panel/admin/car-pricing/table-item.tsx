@@ -1,7 +1,7 @@
 import { PostPriceForCarsAPI } from "@/apis/panel/admin";
 import { InputAdornment, TextField } from "@mui/material";
 import moment from "jalali-moment";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { toast } from "react-toastify";
 
 interface PropTypes {
@@ -25,11 +25,18 @@ const TableItem = ({
 }: PropTypes) => {
   var date = moment.unix(created_at).locale("fa").format("D MMMM YYYY");
 
+  console.log(price)
+
   const [changedPrice, setChangedPrice] = useState({
-    formattedPrice: price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-    price: price,
+
   });
   const [status, setStatus] = useState({ loading: false, error: false });
+
+
+  useEffect(() => {
+    setChangedPrice({    formattedPrice: price ? price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '',
+    price: price})
+  },[price])
 
   const handleClick = () => {
     setStatus({ ...status, loading: true });
@@ -54,6 +61,7 @@ const TableItem = ({
 
   // Change amount handler
   const changeAmountHandler = (e: any) => {
+   
     const { value } = e.target;
 
     const sanitizedValue = value.replace(/,/g, "");
@@ -62,6 +70,7 @@ const TableItem = ({
     const formattedValue = Number(sanitizedValue).toLocaleString();
     setChangedPrice({ price: sanitizedValue, formattedPrice: formattedValue });
   };
+
 
   return (
     <div className="lg:border-b lg:border-b-gray-200 pb-4 lg:col-span-5 col-span-1 lg:grid lg:grid-cols-5 gap-4  flex flex-col items-center rounded-tr-lg rounded-tl-lg lg:px-6 lg:py-3 p-5 lg:border-0 border border-grey-300 lg:rounded-none rounded-lg">

@@ -68,6 +68,7 @@ export const FormInput = ({
         className={`${classes} form-inp`}
         variant="outlined"
         fullWidth
+        value={formik.values[name]}
         label={label}
         name={name}
         type={type}

@@ -1,7 +1,7 @@
 "use client";
 import { staticData } from "@/data";
 import { ADD_CAR_MODEL } from "@/redux/brand-model/brand-model-slice";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "src/hooks/redux-hooks";
 import { SelectBox } from "./select-box";
 
@@ -12,16 +12,19 @@ const SelectYear = ({
   name,
   customYears = false,
   defaultValue,
+  inVehicle = false,
 }) => {
   const { category } = useAppSelector((state) => state.brandModel);
   const [yearMiladi, setYearMiladi] = useState("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (category) {
-      setYearMiladi(true);
-    } else {
-      setYearMiladi(false);
+    if (!inVehicle) {
+      if (category) {
+        setYearMiladi(true);
+      } else {
+        setYearMiladi(false);
+      }
     }
   }, [category]);
 

@@ -36,7 +36,9 @@ import upload_img_guide19 from "@/assets/img/uploadImageGuide/19.png";
 import upload_img_guide20 from "@/assets/img/uploadImageGuide/20.png";
 import user_panel_img from "@/assets/img/Group2.png";
 import checkTemplate from "@/assets/img/exhibitors/checkImage.png";
-import flash from "@/assets/img/";
+import man from "@/assets/img/man.png";
+import flash from "@/assets/img/flash.svg"
+import registerExbg from "@/assets/img/register-bg.png"
 // @@@___________________ Ecnomy cars ___________________@@@
 import car_206_img from "@/assets/img/cars/economy/206.png";
 import car_dena_img from "@/assets/img/cars/economy/dena.png";
@@ -80,6 +82,8 @@ import arzesh_img from "@/assets/img/aboutUs/arzesh.png";
 
 // @@@___________________ Logo ___________________@@@
 import logo_main from "@/assets/img/Logo.svg";
+
+import role_banner from "@/assets/img/role_banner.gif";
 
 export {
   home_page_banner,
@@ -164,5 +168,12 @@ export {
   arzesh_img,
   // _______ logo _______
   logo_main,
+  //_______checks_______
   checkTemplate,
+
+  role_banner,
+  //_______ exhibitor_______
+  man,
+  flash,
+  registerExbg
 };

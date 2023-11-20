@@ -62,9 +62,8 @@ export default function LikeIconInCards({
   }
 
   const handleLike = (e, position) => {
-    {
-      /*@ts-ignore */
-    }
+    //*@ts-ignore
+
     setLikeCounts(likeCounts + 1);
     setLoading(true);
     e.stopPropagation();
@@ -78,10 +77,10 @@ export default function LikeIconInCards({
         setLoading(false);
         if (res.status == 200 && userInfo.phone_number) {
         }
-        if (position == index) {
-          setIsliked(true);
-          // setIsFilledIcon(false)
-        }
+        // if (position == index) {
+        setIsliked(true);
+        // setIsFilledIcon(false)
+        // }
       })
       .catch(() => {
         setLoading(false);
@@ -89,10 +88,13 @@ export default function LikeIconInCards({
       });
   };
 
+  const route = usePathname();
+
   const handleDisLike = (e: React.MouseEvent, position: number) => {
+    e.stopPropagation();
+    // debugger;
     setLikeCounts(Number(likeCounts) - 1);
     setLoading(true);
-    e.stopPropagation();
     httpService
       .get(
         `${FRONT2MESSAGE}/AdSale/Id/${
@@ -104,17 +106,16 @@ export default function LikeIconInCards({
         if (res.status == 200 && userInfo.phone_number) {
           // toast.info("آگهی از لیست پسندیده شده‌ها حذف شد.");
         }
-        if (position == index) {
-          setIsliked(false);
-          // setIsFilledIcon(true)
-        }
+        // if (position == index) {
+        setIsliked(false);
+        // setIsFilledIcon(true)
+        // }
       })
       .catch(() => {
         setLoading(false);
         toast.error("حذف آگهی با خطا مواجه شد.");
       });
   };
-
 
   return isLiked ? (
     <button className="flex items-center">
@@ -131,7 +132,9 @@ export default function LikeIconInCards({
       )}
       {/*@ts-ignore */}
 
-      {!isNaN(likeCounts) && likeCounts != 0 && likeCounts > 0 && likeCounts}
+      {!route.includes("panel")
+        ? !isNaN(likeCounts) && likeCounts !== 0 && likeCounts > 0 && likeCounts
+        : ""}
     </button>
   ) : (
     <button className="flex items-center">
@@ -146,7 +149,9 @@ export default function LikeIconInCards({
         />
       )}
       {/*@ts-ignore */}{" "}
-      {!isNaN(likeCounts) && likeCounts != 0 && likeCounts > 0 && likeCounts}
+      {!route.includes("panel")
+        ? !isNaN(likeCounts) && likeCounts != 0 && likeCounts > 0 && likeCounts
+        : ""}
     </button>
   );
 }

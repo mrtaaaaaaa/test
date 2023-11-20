@@ -1,5 +1,3 @@
-import { GetCarsListAPi } from "@/apis/cars-list";
-import GetStaticDatasAPI from "@/apis/static-datas/get-static-data.api";
 import GetStaticDatasNotSSRAPI from "@/apis/static-datas/get-static-datas-not-ssr.api";
 import NewCarOrders from "@/components/page/car-order/new/index";
 import { ConvertAPIImagesToBase64 } from "@/utils/get-images-base64-api";

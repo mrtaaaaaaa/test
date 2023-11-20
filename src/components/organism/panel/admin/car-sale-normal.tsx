@@ -4,6 +4,7 @@ import { GetCarSaleListsAPI } from "@/apis/panel/admin";
 import Alert from "@/attom/alerts/alert";
 import CardProduct from "@/attom/cards/card-product";
 import { Loading } from "@/attom/loading/loading";
+import { ConvertAPIImagesToBase64 } from "@/utils/get-images-base64-api";
 import { useEffect, useState } from "react";
 
 interface StateData {
@@ -21,11 +22,13 @@ const NormalCarSaleRequestsPage = () => {
 
   async function fetchData() {
     setData({ ...data, isLoading: false });
-    GetCarSaleListsAPI().then((res) => {
-      setData({ ads: res.ads, isLoading: false, isError: false });
-    }).catch(() => {
+    try {
+      const tempCarList = await GetCarSaleListsAPI();
+      await ConvertAPIImagesToBase64(tempCarList?.ads);
+      setData({ ads: tempCarList.ads, isLoading: false, isError: false });
+    } catch(error: any) {
       setData({ ads: [], isLoading: false, isError: true });
-    });
+    }
   }
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const NormalCarSaleRequestsPage = () => {
   } else {
     return (
       <>
-        <h1 className="font-bold text-lg mb-4">
+        <h1 className="font-bold text-xl mb-4 text-blue">
           درخواست‌های ثبت‌شده فروش عادی
         </h1>
         <div
@@ -55,7 +58,7 @@ const NormalCarSaleRequestsPage = () => {
               return (
                 <CardProduct
                   key={product.ad_code}
-                  image={product.image_guids}
+                  image={product.front_firstImage_base64File}
                   data={product}
                 />
               );

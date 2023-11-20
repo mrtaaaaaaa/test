@@ -145,13 +145,13 @@ export default function UpdateAdPageContent({
         PostAuthUserUpdate(userData).then((res) => {
           toast.success("آگهی شما پس از تایید منتشر خواهد شد");
           dispatch(REMOVE_CAR_INFO());
-          router.push(`/panel/${roles?.[0]}/info`);
+          router.push(`/panel/${roles?.[0]}/ads`);
         });
       })
       .catch((err) => {
         toast.error("ثبت آگهی با خطا مواجه شد");
         dispatch(REMOVE_CAR_INFO());
-        router.push(`/panel/${roles?.[0]}/info`);
+        router.push(`/panel/${roles?.[0]}/ads`);
       });
   };
 

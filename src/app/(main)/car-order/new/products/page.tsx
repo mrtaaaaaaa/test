@@ -1,6 +1,3 @@
-import { GetCarsListAPi } from "@/apis/cars-list";
-import GetStaticDataAPI from "@/apis/static-datas/get-static-data.api";
-import GetStaticDatasAPI from "@/apis/static-datas/get-static-data.api";
 import GetStaticDatasNotSSRAPI from "@/apis/static-datas/get-static-datas-not-ssr.api";
 import NewProductListPage from "@/page/car-order/new/products";
 
