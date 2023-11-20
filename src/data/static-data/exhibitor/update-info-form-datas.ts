@@ -1,0 +1,25 @@
+export const update_info_form_datas = [
+    { name: "name", fa: "نام" },
+    { name: "family", fa: "نام‌خانوادگی" },
+    { name: "father_name", fa: "نام پدر" },
+    { name: "birth_date_year" },
+    { name: "birth_date_month" },
+    { name: "birth_date_day" },
+    { name: "marital_status", fa: "وضعیت تاهل" },
+    { name: "number_of_children" },
+    { name: "residence_address" },
+    { name: "housing_ownership_status", fa: "وضعیت تملک" },
+    { name: "job", fa: "شغل" },
+    { name: "work_address" },
+    { name: "documented_monthly_income" },
+    { name: "undocumented_monthly_income" },
+    { name: "repayment_period" },
+    { name: "postal_code" },
+    { name: "birth_certificate_code" },
+    { name: "birth_certificate_issuing_place", fa: "محل صدور شناسنامه" },
+    { name: "landline_phone_number" },
+    { name: "amount_of_requested_facility" },
+    { name: "workplace_number" },
+  ];
+  
+  
