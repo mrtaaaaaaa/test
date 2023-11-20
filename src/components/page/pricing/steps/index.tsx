@@ -1,11 +1,18 @@
-"use client"
+"use client";
 import { useAppSelector } from "src/hooks/redux-hooks";
 import Stepper from "./components/stepper";
 import StepOne from "./components/stepper/step-one";
 import StepTwo from "./components/stepper/step-two";
 import StepThree from "./components/stepper/step-three";
+import { useRequest } from "@/hooks/useRequest";
+import { FRONT2DB } from "@/config/url";
 
-const PricingSteps =  ({ brandModel }: any) => {
+const PricingSteps = () => {
+  const { data } = useRequest({
+    method: "GP",
+    url: `${FRONT2DB}/BrandModelType/Get/All`,
+  });
+
   const { tab } = useAppSelector((state) => state.pricing);
   return (
     <>
@@ -33,7 +40,7 @@ const PricingSteps =  ({ brandModel }: any) => {
       <div>
         <Stepper />
         {/* Stepper One */}
-        {tab == 1 && <StepOne brandModel={brandModel} />}
+        {tab == 1 && <StepOne brandModel={data?.brandModel || []} />}
 
         {/* Stepper Two */}
         {tab == 2 && <StepTwo />}
