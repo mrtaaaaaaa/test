@@ -4,8 +4,11 @@ import ProductListPage from "@/page/car-order/list/products/page";
 import { ConvertAPIImagesToBase64 } from "@/utils/get-images-base64-api";
 
 export default async function Product() {
-  const data = await GetPublishedListAPI();
-  await ConvertAPIImagesToBase64(data?.ads);
+  const publishedAds = await GetStaticDatasNotSSRAPI({
+    endPoint: "/AdSale/Get/Published",
+    method: "get",
+  });
+  await ConvertAPIImagesToBase64(publishedAds?.ads);
 
   let pagedata = { page_number: 1, page_size: 100 };
 
@@ -27,7 +30,7 @@ export default async function Product() {
 
   return (
     <ProductListPage
-      ads={data.ads}
+      ads={publishedAds?.ads || []}
       models={brandData?.brandModelTypes || []}
       colors={colors}
       cities={citiesData?.cities || []}
