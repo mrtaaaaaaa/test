@@ -6,8 +6,11 @@ import UsedProductListPage from "@/page/car-order/used/products/page";
 import { ConvertAPIImagesToBase64 } from "@/utils/get-images-base64-api";
 
 export default async function Product() {
-  const data = await GetCarsListAPi("Used");
-  await ConvertAPIImagesToBase64(data?.ads);
+  const data = await GetStaticDatasNotSSRAPI({
+    endPoint: "/AdSale/Get/Published/Used",
+    method: "get",
+  });
+  await ConvertAPIImagesToBase64(data?.ads ?? []);
 
   let pagedata = { page_number: 1, page_size: 100 };
 
@@ -17,20 +20,20 @@ export default async function Product() {
     method: "post",
   });
 
-  const { colors } = await GetStaticDatasNotSSRAPI({
+  const colorsList = await GetStaticDatasNotSSRAPI({
     endPoint: "/Color/Get/All",
   });
 
-  const { cities } = await GetStaticDatasNotSSRAPI({
+  const citiesList = await GetStaticDatasNotSSRAPI({
     endPoint: "/City/Get/All",
   });
 
   return (
     <UsedProductListPage
-      ads={data.ads}
+      ads={data?.ads ?? []}
       models={brandData?.brandModelTypes || []}
-      colors={colors}
-      cities={cities}
+      colors={colorsList?.colors || []}
+      cities={citiesList?.cities || []}
     />
   );
 }
