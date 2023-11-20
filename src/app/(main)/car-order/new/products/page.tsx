@@ -30,7 +30,7 @@ export default async function Product() {
 
   return (
     <NewProductListPage
-      ads={data.ads}
+      ads={data?.ads || []}
       models={brandData?.brandModelTypes || []}
       colors={colorsData?.colors || []}
       cities={citiesData?.cities || []}
