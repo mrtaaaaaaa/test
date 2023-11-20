@@ -18,12 +18,12 @@ export default async function Product() {
     method: "post",
   });
 
-  const { colors } = await GetStaticDatasNotSSRAPI({
+  const colorsData = await GetStaticDatasNotSSRAPI({
     method: "get",
     endPoint: "/Color/Get/All",
   });
 
-  const { cities } = await GetStaticDatasNotSSRAPI({
+  const citiesData = await GetStaticDatasNotSSRAPI({
     method: "get",
     endPoint: "/City/Get/All",
   });
@@ -32,8 +32,8 @@ export default async function Product() {
     <NewProductListPage
       ads={data.ads}
       models={brandData?.brandModelTypes || []}
-      colors={colors}
-      cities={cities}
+      colors={colorsData?.colors || []}
+      cities={citiesData?.cities || []}
     />
   );
 }
